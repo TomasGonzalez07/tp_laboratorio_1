@@ -1,5 +1,5 @@
 /*
- Name        : TP_^1^
+ Name        : TP_1
  Author      : Tomas Gonzalez 1B
  */
 #include <stdio.h>

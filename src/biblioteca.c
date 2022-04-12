@@ -1,6 +1,6 @@
 /*
  * biblioteca.c
- * Author: Tomas Gonzalez
+ * Author: Tomas Gonzalez 1B
  */
 
 #include <stdio.h>
