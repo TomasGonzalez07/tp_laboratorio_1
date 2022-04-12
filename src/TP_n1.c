@@ -9,7 +9,7 @@
 int main(void)
 {
 	setbuf(stdout,NULL);
-    int kilometrosRecibidos;
+    int kilometrosRecibidos = 0;
 	int precioVueloAerolineas = 0;
 	int precioVueloLatam = 0;
 
@@ -53,7 +53,7 @@ int main(void)
                 }
                 break;
                 case 3:
-                if(precioVueloAerolineas!=0 && precioVueloLatam!=0)
+                if(kilometrosRecibidos != 0 && precioVueloAerolineas != 0 && precioVueloLatam != 0)
                 {
 					precioAerolineasTarjetaDebito = CalcularTarjetaDebito(precioVueloAerolineas);
 					precioAerolineasTarjetaCredito = CalcularTarjetaCredito(precioVueloAerolineas);
@@ -67,7 +67,7 @@ int main(void)
                 }
                 break;
                 case 4:
-                if(precioVueloAerolineas!=0 && precioVueloLatam!=0)
+                if(kilometrosRecibidos != 0 && precioVueloAerolineas != 0 && precioVueloLatam != 0)
                 {
 					MostrarResultadoEntero("\n KMs ingresados:",kilometrosRecibidos);
 					MostrarResultadoEntero("\n Precio Aerolineas: $",precioVueloAerolineas);
@@ -111,7 +111,7 @@ int main(void)
                 break;
             }
         }
-    }while(opcionesGenerales!=6);
+    }while(opcionesGenerales != 6);
 
     return 0;
 }

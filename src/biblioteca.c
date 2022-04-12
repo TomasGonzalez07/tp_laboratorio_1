@@ -39,7 +39,7 @@ int RecibirKm(char* mensaje,char* mensajeError)
 
 			printf("%s",mensaje);
 			scanf("%d",&ingresoKilometros);
-		    while(ingresoKilometros<0)
+		    while(ingresoKilometros < 0)
 			{
 		    	printf("%s", mensajeError);
 		    	printf("%s",mensaje);
@@ -57,7 +57,7 @@ int RecibirPrecioVuelos(char* mensaje,char* mensajeError)
 
     	printf("%s",mensaje);
     	scanf("%d",&ingresoPrecioVuelos);
-    	while(ingresoPrecioVuelos<0)
+    	while(ingresoPrecioVuelos < 0)
     	{
     		printf("%s", mensajeError);
     		printf("%s",mensaje);
@@ -75,7 +75,7 @@ float CalcularTarjetaDebito(int precioVuelo)
     float descuento;
     float precioDescuentoFinal;
 
-    descuento = precioVuelo * ((float)porcentajeDescuento/100);
+    descuento = precioVuelo * ((float)porcentajeDescuento / 100);
     precioDescuentoFinal = precioVuelo - descuento;
 
     return precioDescuentoFinal;
@@ -89,7 +89,7 @@ float CalcularTarjetaCredito(int precioVuelo)
     float aumento;
     float precioAumentoFinal;
 
-    aumento = precioVuelo * ((float)porcentajeInteres/100);
+    aumento = precioVuelo * ((float)porcentajeInteres / 100);
     precioAumentoFinal = precioVuelo + aumento;
 
     return precioAumentoFinal;
@@ -103,7 +103,7 @@ float CalcularBitcoin(int precioVuelo)
     float precioFinalBtc;
     float paseBtc;
 
-    paseBtc = ((float)(1/unBtc));
+    paseBtc = ((float)(1 / unBtc));
     precioFinalBtc = precioVuelo*paseBtc;
 
     return precioFinalBtc;
@@ -149,7 +149,7 @@ void MostrarResultadoEntero(char* mensaje, int resultado)
 
 void MostrarResultadoFlotante(char* mensaje,float resultado)
 {
-    printf("%s %f \n",mensaje,resultado);
+    printf("%s %.2f \n",mensaje,resultado);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
