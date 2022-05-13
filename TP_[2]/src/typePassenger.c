@@ -1,6 +1,0 @@
-/*
- * typePassenger.c
- *
- */
-
-
