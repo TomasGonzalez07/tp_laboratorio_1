@@ -250,11 +250,11 @@ struct Passenger Passenger_cargarUno()
 
 	getString(aPassenger.flycode, "Ingrese codigo de vuelo: ","Error\nReingrese codigo de vuelo: ");
 
-	aPassenger.typePassenger = getNumberInt("Ingrese tipo de pasajero(1(turista)2(residente): ",
-										    "Error\nReingrese tipo de pasajero 1(turista)2(residente): ",0, 1);
+	aPassenger.typePassenger = getNumberInt("Ingrese tipo de pasajero(0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO): ",
+										    "Error\nReingrese tipo de pasajero (0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO): ",0, 1);
 
-	aPassenger.statusFlight = getNumberInt("Ingrese estado de vuelo(1(activo)0(inactivo)): ",
-			                               "Error\nReingrese estado de vuelo(1(activo)0(inactivo): ",0,1);
+	aPassenger.statusFlight = getNumberInt("Ingrese estado de vuelo(0(INACTIVO)1(ACTIVO)2(DEMORADO)): ",
+			                               "Error\nReingrese estado de vuelo(0(INACTIVO)1(ACTIVO)2(DEMORADO)): ",0,1);
 
 	return aPassenger;
 }
@@ -441,7 +441,7 @@ int modificarPasajero(struct Passenger listPassenger[],int len,int id)
 						break;
 					case 4:
 						listPassenger[i].typePassenger = getNumberInt("Ingrese tipo de pasajero(0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO)): ",
-																	 "Error\nReingrese tipo de pasajero(1(turista)2(residente): ",1,2);
+																	 "Error\nReingrese tipo de pasajero(0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO): ",0,2);
 						rtn = 1;
 						break;
 					case 5:

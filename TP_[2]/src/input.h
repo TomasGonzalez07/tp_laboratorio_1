@@ -13,7 +13,6 @@
 int utn_getnumero(int* pResultado,char* mensaje, char* mensajeError,int minimo, int maximo);
 
 ///-----------------------------------------------------------------------------------------///
-
 int esNumerico(char str[]);
 int esNumericoFlotante(char str[]);
 
