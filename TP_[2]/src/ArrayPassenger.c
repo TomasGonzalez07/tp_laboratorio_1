@@ -173,7 +173,7 @@ int printPassengers(struct Passenger listPassenger[],int len)
  												anchoColumnaPrecios,"PRECIO",
  												anchoColumnaCodigos,"CODIGO DE VUELO",
  												anchoColumnaTipo,"TIPO PASAJERO",
- 												anchoColumnaEstadoVuelo,"ESTADO DEL VUELO\n|     |                    |                    |                    |                    |    1(TUR)2(RES)    |1(ACTIVO)2(INACTIVO)");
+ 												anchoColumnaEstadoVuelo,"ESTADO DEL VUELO");
     printf("+-----+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
 	if(listPassenger != NULL)
@@ -440,7 +440,7 @@ int modificarPasajero(struct Passenger listPassenger[],int len,int id)
 						rtn = 1;
 						break;
 					case 4:
-						listPassenger[i].typePassenger = getNumberInt("Ingrese tipo de pasajero(1(turista)2(residente)): ",
+						listPassenger[i].typePassenger = getNumberInt("Ingrese tipo de pasajero(0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO)): ",
 																	 "Error\nReingrese tipo de pasajero(1(turista)2(residente): ",1,2);
 						rtn = 1;
 						break;
@@ -449,8 +449,8 @@ int modificarPasajero(struct Passenger listPassenger[],int len,int id)
 						rtn = 1;
 						break;
 					case 6:
-						listPassenger[i].statusFlight = getNumberInt("Ingrese estado de vuelo(1(activo)0(inactivo)): ",
-																	 "Error\nReingrese estado de vuelo(1(activo)0(inactivo): ",0,1);
+						listPassenger[i].statusFlight = getNumberInt("Ingrese estado de vuelo(0(INACTIVO)1(ACTIVO)2(DEMORADO)): ",
+																	 "Error\nReingrese estado de vuelo(0(INACTIVO)1(ACTIVO)2(DEMORADO): ",0,1);
 					break;
 					}
 				}
@@ -471,11 +471,11 @@ int modificarPasajero(struct Passenger listPassenger[],int len,int id)
 void cargaForzadaDatos(struct Passenger listPassenger[])
 {
 	struct Passenger auxiliar[10]= {{1,"Pedro","Aveiro",800.5,"hodoha",1,0,OCUPADO},
-									{2,"Giselle","Perez",300.5,"zodada",2,1,OCUPADO},
+									{2,"Giselle","Perez",300.5,"zodada",0,1,OCUPADO},
 									{3,"Cristiano","Santos",800.5,"codapña",1,1,OCUPADO},
 									{4,"Ariel","Gomez",300.5,"codaoua",2,1,OCUPADO},
 									{5,"Salvador","Ramirez",300.5,"godaha",2,0,OCUPADO},
-									{6,"Maite","Gonzalez",800.5,"codqhl",1,1,OCUPADO},
+									{6,"Maite","Gonzalez",800.5,"codqhl",0,1,OCUPADO},
 									{7,"Leonidas","Elstner",800.5,"codqhlg",1,1,OCUPADO},
 									{8,"Constantino","Giovagnonni",300.5,"codghg",2,1,OCUPADO},
 									{9,"Matias","Coppola",800.5,"zodfil",1,0,OCUPADO},
@@ -500,13 +500,40 @@ void informarPasajero(struct Passenger aPassenger)
 	  int anchoColumnaTipo = -20;
 	  int anchoColumnaEstadoVuelo = -20;
 
-	printf("|%*d|%*s|%*s|%*.2f|%*s|%*d|%*d|\n", anchoColumnaid, aPassenger.id,
+	  char tipoPasajero[15];
+	  switch(aPassenger.typePassenger)
+	  	  {
+	  	  	  case 0:
+	  		  strcpy( tipoPasajero,"PRIMERA CLASE");
+	  		  break;
+	  		  case 1:
+	  		  strcpy( tipoPasajero,"SEGUNDA CLASE");
+	  		  break;
+	  		  case 2:
+	  		  strcpy( tipoPasajero,"ECONOMICO");
+	  		  break;
+	  	  }
+	  char estadoVuelo[15];
+	  switch(aPassenger.statusFlight)
+	  {
+	  	  case 0:
+		  strcpy(estadoVuelo,"INACTIVO");
+		  break;
+		  case 1:
+		  strcpy(estadoVuelo,"ACTIVO");
+		  break;
+		  case 2:
+		  strcpy(estadoVuelo,"DEMORADO");
+		  break;
+	  }
+
+	printf("|%*d|%*s|%*s|%*.2f|%*s|%*s|%*s|\n", anchoColumnaid, aPassenger.id,
 													anchoColumnaNombres,aPassenger.name,
 													anchoColumnaApellidos,aPassenger.lastName,
 													anchoColumnaPrecios,aPassenger.price,
 													anchoColumnaCodigos,aPassenger.flycode,
-													anchoColumnaTipo,aPassenger.typePassenger,
-													anchoColumnaEstadoVuelo,aPassenger.statusFlight);
+													anchoColumnaTipo,tipoPasajero,
+													anchoColumnaEstadoVuelo,estadoVuelo);
 	  printf("+-----+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 }
 
