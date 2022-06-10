@@ -1,11 +1,15 @@
 /*
  * input.h
+ *
+ *  Created on: 3 jun 2022
+ *      Author: User
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include "validaciones.h"
 
 #ifndef INPUT_H_
 #define INPUT_H_
@@ -13,13 +17,9 @@
 int utn_getnumero(int* pResultado,char* mensaje, char* mensajeError,int minimo, int maximo);
 
 ///-----------------------------------------------------------------------------------------///
-int esNumerico(char str[]);
+/*int esNumerico(char str[]);
 int esNumericoFlotante(char str[]);
-
-///-----------------------------------------------------------------------------------------///
-
-int getInt(int*);
-
+*/
 ///-----------------------------------------------------------------------------------------///
 
 void getString(char[], char*,char*);
@@ -32,7 +32,7 @@ void getStringAlf(char nombre[], char* mensaje,char* mensajeError);
 /// @param minimo
 /// @param maximo
 /// @return retorna el numero entero ingresado
-int getNumberInt(char*,char*,int,int);
+int getNumberInt(int*,char*,char*,int,int);
 
 ///-----------------------------------------------------------------------------------------///
 
@@ -42,7 +42,7 @@ int getNumberInt(char*,char*,int,int);
 /// @param minimo
 /// @param maximo
 /// @return retorna numero flotante ingresado
-float getNumberFloat(char* mensaje, char* mensajeError,int minimo, int maximo);
+float getNumberFloat(float *pResultado,char* mensaje, char* mensajeError,int minimo, int maximo);
 
 ///-----------------------------------------------------------------------------------------///
 
@@ -114,5 +114,7 @@ void MostrarResultadoEntero(char*,int);
 void MostrarResultadoFlotante(char*,float);
 
 ///-----------------------------------------------------------------------------------------///
+
+
 
 #endif /* INPUT_H_ */

@@ -1,28 +1,46 @@
 /*
  * input.c
+ *
+ *  Created on: 3 jun 2022
+ *      Author: User
  */
 
-
 #include "input.h"
+
 
 int utn_getnumero(int* pResultado,char* mensaje, char* mensajeError,int minimo, int maximo)
 {
     int retorno = -1;
+    char buffer1[5];
     int buffer;
 
         do{
             printf("%s", mensaje);
             fflush(stdin);
-            if(scanf("%i",&buffer) != 1 || buffer < minimo || buffer > maximo)
+            scanf("%s",buffer1);
+
+            if (!(esEnteroValido(buffer1)))
             {
-            	 printf("%s", mensajeError);
-            	 fflush(stdin);
+            	printf("%s", mensajeError);
+            	fflush(stdin);
             }
             else
             {
-				*pResultado = buffer;
-				retorno = 0;
+            	buffer = strtol(buffer1, NULL, 10);
+            	if( buffer > minimo && buffer < maximo)
+            	{
+            		*pResultado = buffer;
+            		retorno = 0;
+            		fflush(stdin);
+            	}
+            	else
+            	{
+            		printf("%s", mensajeError);
+            		fflush(stdin);
+            	}
+
 		    }
+
 
 
         }while(retorno == -1);
@@ -31,7 +49,7 @@ int utn_getnumero(int* pResultado,char* mensaje, char* mensajeError,int minimo, 
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 int esNumerico(char str[])
 {
    int i=0;
@@ -43,9 +61,9 @@ int esNumerico(char str[])
    }
    return 1;
 }
-
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 int esNumericoFlotante(char str[])
 {
    int i=0;
@@ -64,23 +82,7 @@ int esNumericoFlotante(char str[])
        i++;
    }
    return 1;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-int getInt(int* pResultado)
-{
-	int retorno = -1;
-	char buffer[4000];
-	scanf("%s",buffer);
-
-	if(esNumerico(buffer))
-	{
-		retorno = 0;
-		*pResultado = atoi(buffer);
-	}
-
-	return retorno;
-}
+}*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -92,6 +94,8 @@ void getString(char nombre[], char* mensaje,char* mensajeError)
 
     for(int i = 0;i<strlen(nombre);i++)
         {
+    	nombre[i] = tolower((unsigned char) nombre[i]);
+
     			if(isdigit(nombre[i]))
 				{
 					printf("%s", mensajeError);
@@ -121,38 +125,82 @@ void getStringAlf(char nombre[], char* mensaje,char* mensajeError)
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int getNumberInt(char* mensaje, char* mensajeError,int minimo, int maximo)
+int getNumberInt(int* pResultado,char* mensaje, char* mensajeError,int minimo, int maximo)
 {
-	int pResultado;
+	int retorno = -1;
+	int buffer;
+	char numeroRecibido[5];
 
-	printf("%s", mensaje);
-	fflush(stdin);
+    do{
+       printf("%s", mensaje);
+       fflush(stdin);
+       scanf("%s",numeroRecibido);
 
-	if(scanf("%d", &pResultado) != 1 || pResultado < minimo || pResultado > maximo  )
-	{
-		printf("%s", mensajeError);
-		fflush(stdin);
-		scanf("%d",&pResultado);
-	}
-	return pResultado;
+        if( !(esEnteroValido(numeroRecibido)))
+		{
+			printf("%s", mensajeError);
+			fflush(stdin);
+		}
+        else
+        {
+        	buffer = strtol(numeroRecibido, NULL, 10);
+
+			if(buffer > minimo && buffer < maximo)
+			{
+				*pResultado = buffer;
+				retorno = 0;
+			}
+			else
+			{
+				printf("%s", mensajeError);
+				fflush(stdin);
+			}
+	    }
+
+
+    }while(retorno == -1);
+
+	return retorno;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-float getNumberFloat(char* mensaje, char* mensajeError,int minimo, int maximo)
+float getNumberFloat(float *pResultado,char* mensaje, char* mensajeError,int minimo, int maximo)
 {
 
-	float flotante;
-	printf("%s", mensaje);
-	fflush(stdin);
+	int retorno = -1;
+	char numeroRecibido[10];
+	float buffer;
 
-	if(scanf("%f", &flotante) != 1 || flotante < minimo || flotante > maximo)
-	{
-		printf("%s", mensajeError);
-		fflush(stdin);
-		scanf("%f", &flotante);
-	}
+	do{
+	   printf("%s", mensaje);
+	   fflush(stdin);
+	   scanf("%s",numeroRecibido);
 
-	return flotante;
+		if( !(esFlotanteValido(numeroRecibido)))
+		{
+			printf("%s", mensajeError);
+			fflush(stdin);
+		}
+		else
+		{
+			buffer = strtol(numeroRecibido, NULL, 10);
+
+			if(buffer > minimo && buffer < maximo)
+			{
+				*pResultado = buffer;
+				retorno = 0;
+			}
+			else
+			{
+				printf("%s", mensajeError);
+				fflush(stdin);
+			}
+		}
+
+
+	}while(retorno == -1);
+
+	return retorno;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

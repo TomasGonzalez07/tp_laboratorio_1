@@ -248,7 +248,7 @@ struct Passenger Passenger_cargarUno()
 
 	aPassenger.price = getNumberFloat("Ingrese precio: ","Error\nReingrese precio: " ,0, 1000000);
 
-	getString(aPassenger.flycode, "Ingrese codigo de vuelo: ","Error\nReingrese codigo de vuelo: ");
+	getStringAlf(aPassenger.flycode, "Ingrese codigo de vuelo: ","Error\nReingrese codigo de vuelo: ");
 
 	aPassenger.typePassenger = getNumberInt("Ingrese tipo de pasajero(0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO): ",
 										    "Error\nReingrese tipo de pasajero (0(PRIMERA CLASE)1(SEGUNDA CLASE)2(ECONOMICO): ",0, 1);
