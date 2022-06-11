@@ -57,7 +57,7 @@ int main()
 					}
 					break;
 				case 2:
-					retorno = controller_loadFromBinary("data.bin",listaPasajeros);
+					retorno = controller_loadFromBinary("bin.dat",listaPasajeros);
 					switch(retorno)
 					{
 					case -1:
@@ -141,7 +141,7 @@ int main()
 					}
 					break;
 				case 9:
-					retorno = controller_saveAsBinary("data.bin",listaPasajeros);
+					retorno = controller_saveAsBinary("bin.dat",listaPasajeros);
 					switch(retorno)
 					{
 					case -1:

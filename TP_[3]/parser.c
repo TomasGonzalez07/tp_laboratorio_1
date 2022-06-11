@@ -65,8 +65,10 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 {
 	Passenger* unPasajero;
 	int datosLeidos;
+
 	while(!feof(pFile))
 	{
+
 		unPasajero = Passenger_new();
 		datosLeidos = fread(&unPasajero,sizeof(Passenger*),1,pFile);
 		if(datosLeidos == 1 && unPasajero != NULL)
@@ -75,7 +77,18 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 		}
 		else
 		{
-			printf("error al leer datos");
+			if(datosLeidos != 1)
+			{
+				if(!feof(pFile))
+				{
+					printf("error al leer datos\n");
+					break;
+				}
+				else
+				{
+					printf("se leyo todo el archivo completo\n");
+				}
+			}
 		}
 	}
 	fclose(pFile);
