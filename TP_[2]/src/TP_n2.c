@@ -12,7 +12,6 @@
 #include <string.h>
 #include "input.h"
 #include "ArrayPassenger.h"
-#define len 2000
 
 int main(void) {
 
@@ -21,6 +20,7 @@ int main(void) {
 	int opcionesGenerales;
 	int respuestaGen;
 	int retorno = 0;
+	int len = 2000;
 	struct Passenger listPassenger[len];
 	initPassengers(listPassenger, len);
 	do
