@@ -37,12 +37,14 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 {
 	int rtn = -1;
 	FILE* pArchivo;
-	pArchivo = fopen(path,"rb");
 
-	if((pArchivo = fopen(path, "rb")) != NULL)
+	pArchivo = fopen(path,"rb");
+	if(pArchivo != NULL)
 	{
-		parser_PassengerFromBinary(pArchivo ,pArrayListPassenger);
+		parser_PassengerFromBinary(pArchivo,pArrayListPassenger);
 		rtn = 1;
+
+		fclose(pArchivo);
 	}
 
     return rtn;
@@ -119,7 +121,7 @@ int controller_ListPassenger(LinkedList* pArrayListPassenger)
 
 	int cantidad = ll_len(pArrayListPassenger);
 
-	if(cantidad != 0)
+	if(cantidad > 0)
 	{
 		for(int i = 0; i < cantidad;i++)
 		{
@@ -207,18 +209,18 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 	Passenger* unPasajero;
 	int rtn = -1;
 
-	pArchivo = fopen(path,"wb");
-	if(pArchivo != NULL && pArrayListPassenger != NULL)
+	if(path != NULL && pArrayListPassenger != NULL)
+	 {
+		pArchivo = fopen(path,"wb");
+
+		 for(int i=0; i<ll_len(pArrayListPassenger); i++)
 		 {
-			 for(int i=0; i<ll_len(pArrayListPassenger); i++)
-			 {
-				 unPasajero = (Passenger*)ll_get(pArrayListPassenger, i);
-				 fwrite(unPasajero, sizeof(Passenger), 1, pArchivo);
-				 rtn = 1;
-			 }
+			 unPasajero = (Passenger*)ll_get(pArrayListPassenger, i);
+			 fwrite(unPasajero,sizeof(Passenger),1,pArchivo);
 		 }
 		 fclose(pArchivo);
-
+		 rtn = 1;
+	 }
 
     return rtn;
 }

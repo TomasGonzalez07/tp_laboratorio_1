@@ -64,34 +64,26 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 {
 	Passenger* unPasajero;
-	int datosLeidos;
 
-	while(!feof(pFile))
+	if(pFile != NULL && pArrayListPassenger != NULL)
 	{
+		do
+		{
+			unPasajero = Passenger_new();
 
-		unPasajero = Passenger_new();
-		datosLeidos = fread(&unPasajero,sizeof(Passenger*),1,pFile);
-		if(datosLeidos == 1 && unPasajero != NULL)
-		{
-			ll_add(pArrayListPassenger,unPasajero);
-		}
-		else
-		{
-			if(datosLeidos != 1)
+			if(unPasajero != NULL)
 			{
-				if(!feof(pFile))
+				if(fread(unPasajero,sizeof(Passenger),1,pFile))
 				{
-					printf("error al leer datos\n");
-					break;
-				}
-				else
-				{
-					printf("se leyo todo el archivo completo\n");
+					ll_add(pArrayListPassenger,unPasajero);
 				}
 			}
-		}
+			else
+			{
+				printf("error al leer datos\n");
+			}
+		}while(!feof(pFile));
 	}
-	fclose(pFile);
 
     return 1;
 }
